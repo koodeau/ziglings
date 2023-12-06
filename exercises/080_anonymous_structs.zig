@@ -48,13 +48,13 @@ pub fn main() void {
     // * circle1 should hold i32 integers
     // * circle2 should hold f32 floats
     //
-    var circle1 = ??? {
+    var circle1 = Circle(i32){
         .center_x = 25,
         .center_y = 70,
         .radius = 15,
     };
 
-    var circle2 = ??? {
+    var circle2 = Circle(f32){
         .center_x = 25.234,
         .center_y = 70.999,
         .radius = 15.714,
@@ -79,7 +79,7 @@ pub fn main() void {
 // in Ex. 065? We're going to do the same thing here: use a hard-
 // coded slice to return the type name. That's just so our output
 // looks prettier. Indulge your vanity. Programmers are beautiful.
-fn stripFname(mytype: []const u8) []const u8 {
-    return mytype[22..];
+fn stripFname(comptime mytype: []const u8) []const u8 {
+    return mytype[22..]; // @typeName(Circle(@TypeOf(mytype)))[22..]; // mytype[22..];
 }
 // The above would be an instant red flag in a "real" program.
